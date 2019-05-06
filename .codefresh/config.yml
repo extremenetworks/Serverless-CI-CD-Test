@@ -1,5 +1,6 @@
 version: '1.0'
 stages:
+  - clone
   - prepare
   - pre-deploy
   - deploy
@@ -9,11 +10,12 @@ steps:
     type: git-clone
     repo: '${{CF_REPO_OWNER}}/${{CF_REPO_NAME}}'
     revision: '${{CF_REVISION}}'
-    stage: prepare
+    stage: clone
     git: CF-default
     
   setup:
     image: alpine:3.7
+    stage: prepare
     title: generate GCP shared credentials file
     commands:
       - mkdir -p .gcloud
@@ -26,6 +28,7 @@ steps:
     stage: pre-deploy
     working_directory: ${{main_clone}}
     commands:
+      - pip install pylint
       - pylint main.py
  
   package:
