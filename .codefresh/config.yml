@@ -29,6 +29,7 @@ steps:
     working_directory: ${{main_clone}}
     commands:
       - pip install -r requirements.txt
+      - pip install pylint
       - pylint main.py
  
   package:
