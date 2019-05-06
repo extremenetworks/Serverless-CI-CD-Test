@@ -1,0 +1,45 @@
+version: '1.0'
+stages:
+  - prepare
+  - pre-deploy
+  - deploy
+steps:
+  main_clone:
+    title: Cloning main repository...
+    type: git-clone
+    repo: '${{CF_REPO_OWNER}}/${{CF_REPO_NAME}}'
+    revision: '${{CF_REVISION}}'
+    stage: prepare
+    git: CF-default
+    
+  setup:
+    image: alpine:3.7
+    title: generate GCP shared credentials file
+    commands:
+      - mkdir -p .gcloud
+      - echo -n $GCP_CREDENTIALS_FILE | base64 -d > ${PWD}/.gcloud/keyfile
+      - cf_export GCP_SHARED_CREDENTIALS_FILE=${PWD}/.gcloud/keyfile
+ 
+  lint:
+    image: python:3-slim
+    title: lint
+    stage: pre-deploy
+    working_directory: ${{main_clone}}
+    commands:
+      - pylint main.py
+ 
+  package:
+    image: codefresh/serverless:1.28
+    stage: pre-deploy
+    title: package serverless service
+    working_directory: ${{main_clone}}
+    commands:
+      - serverless package --package ${PACKAGE}
+      
+  deploy:
+    image: codefresh/serverless:1.28
+    stage: deploy
+    title: deploy to GCP with serverless framework
+    working_directory: ${{main_clone}}
+    commands:
+      - serverless deploy --conceal --verbose --package ${PACKAGE}
