@@ -37,6 +37,7 @@ steps:
     title: package serverless service
     working_directory: ${{main_clone}}
     commands:
+      - npm install package.json
       - serverless package --package ${PACKAGE}
       
   deploy:
@@ -45,4 +46,4 @@ steps:
     title: deploy to GCP with serverless framework
     working_directory: ${{main_clone}}
     commands:
-      - serverless deploy --conceal --verbose --package ${PACKAGE}
+      - serverless deploy
