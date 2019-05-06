@@ -30,8 +30,7 @@ steps:
     commands:
       - pip install -r requirements.txt
       - pip install pylint
-      - pylint main.py
- 
+      
   package:
     image: codefresh/serverless:1.28
     stage: pre-deploy
