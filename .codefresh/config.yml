@@ -3,6 +3,7 @@ stages:
   - clone
   - prepare
   - pre-deploy
+  - test
   - deploy
 steps:
   main_clone:
@@ -12,34 +13,42 @@ steps:
     revision: '${{CF_REVISION}}'
     stage: clone
     git: CF-default
-    
+
   setup:
     image: alpine:3.7
     stage: prepare
     title: generate GCP shared credentials file
     commands:
       - mkdir -p .gcloud
-      - echo -n $GCP_CREDENTIALS_FILE | base64 -d > ${PWD}/.gcloud/keyfile
-      - cf_export GCP_SHARED_CREDENTIALS_FILE=${PWD}/.gcloud/keyfile
- 
-  lint:
-    image: python:3-slim
+      - echo -n $GCP_CREDENTIALS_FILE | base64 -d > ${PWD}/.gcloud/keyfile.json
+      - cf_export GCP_SHARED_CREDENTIALS_FILE=${PWD}/.gcloud/keyfile.json
+
+  lint_build:
+    image: nikolaik/python-nodejs:latest
     title: lint
     stage: pre-deploy
-    working_directory: ${{main_clone}}
+    working_directory: ${{main_clone}}/ts-sandbox
     commands:
-      - pip install -r requirements.txt
-      - pip install pylint
+      - npm --prefix ./functions/ run lint
+      - npm --prefix ./functions/ run build
+
+  unitTest:
+    image: nikolaik/python-nodejs:latest
+    title: Unit Test using firebase cloud shell
+    stage: test
+    working_directory: ${{main_clone}}/ts-sandbox
+    commands:
+      - pip install tests/requirements.txt
+      - python tests/curl.py
       
   package:
     image: codefresh/serverless:1.28
     stage: pre-deploy
     title: package serverless service
-    working_directory: ${{main_clone}}
+    working_directory: ${{main_clone}}/ts-sandbox/functions
     commands:
-      - npm install package.json
       - serverless package --package ${PACKAGE}
-      
+
   deploy:
     image: codefresh/serverless:1.28
     stage: deploy
