@@ -28,7 +28,7 @@ def outputReader(proc):
             break
 
 def main():
-    cmd = "sudo firebase functions:shell < test.js"
+    cmd = "firebase functions:shell < test.js"
     proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stdin=subprocess.PIPE, shell=True)
     th = threading.Thread(target=outputReader, args=(proc, ))
     th.start()
