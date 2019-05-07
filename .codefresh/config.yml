@@ -39,7 +39,7 @@ steps:
     commands:
       - ls
       - npm install firebase-tools
-      - pip install tests/requirements.txt
+      - pip install -r requirements.txt
       - python tests/curl.py
       
   package:
