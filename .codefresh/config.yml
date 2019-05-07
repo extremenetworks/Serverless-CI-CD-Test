@@ -32,11 +32,12 @@ steps:
       - npm install package.json
 
   unitTest:
-    image: ${{lint_build}}
+    image: nikolaik/python-nodejs:latest
     title: Unit Test using firebase cloud shell
     stage: test
     working_directory: ${{main_clone}}/ts-sandbox
     commands:
+      - npm install firebase-tools
       - pip install tests/requirements.txt
       - python tests/curl.py
       
