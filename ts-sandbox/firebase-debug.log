@@ -1,0 +1,25 @@
+[debug] [2019-05-07T17:03:23.800Z] ----------------------------------------------------------------------
+[debug] [2019-05-07T17:03:23.803Z] Command:       /usr/bin/node /usr/bin/firebase functions:shell
+[debug] [2019-05-07T17:03:23.803Z] CLI Version:   6.8.0
+[debug] [2019-05-07T17:03:23.803Z] Platform:      linux
+[debug] [2019-05-07T17:03:23.803Z] Node Version:  v10.15.2
+[debug] [2019-05-07T17:03:23.803Z] Time:          Tue May 07 2019 22:33:23 GMT+0530 (India Standard Time)
+[debug] [2019-05-07T17:03:23.803Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-05-07T17:03:23.812Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-05-07T17:03:23.812Z] > authorizing via signed-in user
+[debug] [2019-05-07T17:03:23.812Z] [iam] checking project saas-cloud-prototype for permissions ["firebase.projects.get"]
+[debug] [2019-05-07T17:03:23.814Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/saas-cloud-prototype:testIamPermissions  
+
+[debug] [2019-05-07T17:03:24.861Z] <<< HTTP RESPONSE 200
+[info] i  functions: Preparing to emulate functions.
+[debug] [2019-05-07T17:03:25.336Z] Fetching environment
+[debug] [2019-05-07T17:03:25.338Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/saas-cloud-prototype  
+ 
+[debug] [2019-05-07T17:03:26.087Z] <<< HTTP RESPONSE 200
+[debug] [2019-05-07T17:03:26.089Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/214712565316:getServerAppConfig  
+ 
+[debug] [2019-05-07T17:03:27.066Z] <<< HTTP RESPONSE 200
+[debug] [2019-05-07T17:03:27.067Z] Starting @google-cloud/functions-emulator
+[debug] [2019-05-07T17:03:28.593Z] Parsing function triggers
+[info] ✔  functions: napi

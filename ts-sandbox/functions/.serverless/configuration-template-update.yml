@@ -1,0 +1,16 @@
+resources:
+  - type: storage.v1.bucket
+    name: sls-new-svc-dev-1557089896258
+  - type: cloudfunctions.v1beta2.function
+    name: new-svc-dev-samp-api
+    properties:
+      location: us-central1
+      availableMemoryMb: 256
+      runtime: nodejs8
+      timeout: 60s
+      function: napi
+      sourceArchiveUrl: >-
+        gs://sls-new-svc-dev-1557089896258/serverless/new-svc/dev/1557228078263-2019-05-07T11:21:18.263Z/new-svc.zip
+      labels: {}
+      httpsTrigger:
+        url: path

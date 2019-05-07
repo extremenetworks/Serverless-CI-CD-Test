@@ -1,0 +1,37 @@
+[debug] [2019-05-07T04:18:40.071Z] ----------------------------------------------------------------------
+[debug] [2019-05-07T04:18:40.074Z] Command:       /usr/bin/node /usr/bin/firebase deploy
+[debug] [2019-05-07T04:18:40.074Z] CLI Version:   6.8.0
+[debug] [2019-05-07T04:18:40.074Z] Platform:      linux
+[debug] [2019-05-07T04:18:40.074Z] Node Version:  v10.15.2
+[debug] [2019-05-07T04:18:40.074Z] Time:          Tue May 07 2019 09:48:40 GMT+0530 (India Standard Time)
+[debug] [2019-05-07T04:18:40.074Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-05-07T04:18:40.085Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-05-07T04:18:40.085Z] > authorizing via signed-in user
+[debug] [2019-05-07T04:18:40.085Z] [iam] checking project saas-cloud-prototype for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasedatabase.instances.update","firebasehosting.sites.update"]
+[debug] [2019-05-07T04:18:40.087Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2019-05-07T04:18:40.087Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2019-05-07T04:18:41.387Z] <<< HTTP RESPONSE 200
+[debug] [2019-05-07T04:18:41.391Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/saas-cloud-prototype:testIamPermissions  
+
+[debug] [2019-05-07T04:18:42.661Z] <<< HTTP RESPONSE 200
+[debug] [2019-05-07T04:18:42.663Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/saas-cloud-prototype  
+ 
+[debug] [2019-05-07T04:18:49.817Z] ----------------------------------------------------------------------
+[debug] [2019-05-07T04:18:49.820Z] Command:       /usr/bin/node /usr/bin/firebase deploy
+[debug] [2019-05-07T04:18:49.820Z] CLI Version:   6.8.0
+[debug] [2019-05-07T04:18:49.821Z] Platform:      linux
+[debug] [2019-05-07T04:18:49.821Z] Node Version:  v10.15.2
+[debug] [2019-05-07T04:18:49.821Z] Time:          Tue May 07 2019 09:48:49 GMT+0530 (India Standard Time)
+[debug] [2019-05-07T04:18:49.821Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-05-07T04:18:49.829Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-05-07T04:18:49.829Z] > authorizing via signed-in user
+[debug] [2019-05-07T04:18:49.830Z] [iam] checking project saas-cloud-prototype for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasedatabase.instances.update","firebasehosting.sites.update"]
+[debug] [2019-05-07T04:18:49.832Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/saas-cloud-prototype:testIamPermissions  
+
+[debug] [2019-05-07T04:18:50.868Z] <<< HTTP RESPONSE 200
+[debug] [2019-05-07T04:18:50.872Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/saas-cloud-prototype  
+ 
+[debug] [2019-05-07T04:18:51.887Z] <<< HTTP RESPONSE 200
