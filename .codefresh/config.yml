@@ -29,11 +29,12 @@ steps:
     stage: pre-deploy
     working_directory: ${{main_clone}}/ts-sandbox
     commands:
+      - npm install package.json
       - npm --prefix ./functions/ run lint
       - npm --prefix ./functions/ run build
 
   unitTest:
-    image: nikolaik/python-nodejs:latest
+    image: ${{lint_build}}
     title: Unit Test using firebase cloud shell
     stage: test
     working_directory: ${{main_clone}}/ts-sandbox
