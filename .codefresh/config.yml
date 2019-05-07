@@ -30,8 +30,6 @@ steps:
     working_directory: ${{main_clone}}/ts-sandbox
     commands:
       - npm install package.json
-      - npm --prefix ./functions/ run lint
-      - npm --prefix ./functions/ run build
 
   unitTest:
     image: ${{lint_build}}
