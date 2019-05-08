@@ -53,7 +53,7 @@ steps:
       - npm install serverless-google-cloudfunctions
       - serverless deploy
 
- package:
+  package:
     image: codefresh/serverless:1.28
     stage: pre-deploy
     title: package serverless service
