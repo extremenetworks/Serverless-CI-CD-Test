@@ -30,6 +30,7 @@ steps:
     commands:
       - ls
       - npm install package.json
+      - npm install -g typescript
       - ls node_modules/
       - npm --prefix ./functions/ run build
 
