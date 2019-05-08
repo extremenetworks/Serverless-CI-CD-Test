@@ -26,13 +26,12 @@ steps:
     image: nikolaik/python-nodejs:latest
     title: lint
     stage: pre-deploy
-    working_directory: ${{main_clone}}/ts-sandbox
+    working_directory: ${{main_clone}}/ts-sandbox/functions
     commands:
-      - ls
       - npm install package.json
       - npm install -g typescript
       - ls node_modules/
-      - npm --prefix ./functions/ run build
+      - npm run build
 
   unitTest:
     image: nikolaik/python-nodejs:latest
