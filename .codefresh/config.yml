@@ -3,7 +3,6 @@ stages:
   - clone
   - prepare
   - pre-deploy
-  - test
   - deploy
 steps:
   main_clone:
@@ -34,11 +33,13 @@ steps:
   unitTest:
     image: nikolaik/python-nodejs:latest
     title: Unit Test using firebase cloud shell
-    stage: test
+    stage: pre-deploy
     working_directory: ${{main_clone}}/ts-sandbox
     commands:
       - ls
-      - npm install firebase-tools
+      - npm install package.json
+      - npm install -g firebase-tools
+      - ls /bin/sh
       - pip install -r requirements.txt
       - python tests/curl.py
       
