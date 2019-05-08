@@ -9,6 +9,7 @@ def createTestOutput(case, result, tab):
     tab.add_row([path, method.upper(), result])
 
 def outputReader(proc):
+    print("In outputReader")
     _count = 0
     cases = [line for line in open("test.js", "r")]
     num = len(cases)
@@ -16,6 +17,7 @@ def outputReader(proc):
     for line in iter(proc.stdout.readline, b''):
         decodedLine = line.decode('utf-8')
         if "RESPONSE" in decodedLine:
+            print(decodedLine)
             if '200' or '201' in decodedLine:
                 createTestOutput(cases[_count], 'SUCCESS', tab)
             else:
@@ -29,10 +31,13 @@ def outputReader(proc):
 
 def main():
     cmd = "firebase functions:shell < test.js"
+    print("Entered the script")
     proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stdin=subprocess.PIPE, shell=True)
     th = threading.Thread(target=outputReader, args=(proc, ))
+    print("Started Thread")
     th.start()
     time.sleep(20)
+    print("Completed")
     exit()
 
 if __name__ == '__main__':
