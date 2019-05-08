@@ -4,6 +4,7 @@ stages:
   - prepare
   - pre-deploy
   - deploy
+  - post-deploy
 steps:
   main_clone:
     title: Cloning main repository...
@@ -55,9 +56,8 @@ steps:
 
   package:
     image: codefresh/serverless:1.28
-    stage: pre-deploy
+    stage: post-deploy
     title: package serverless service
     working_directory: ${{main_clone}}/ts-sandbox/functions
     commands:
-      - echo "Tag and push package to Cloud Storage"
-      - serverless package --package ${PACKAGE}
+      - echo "Tag and push package to Cloud Storage from .serverless folder"
