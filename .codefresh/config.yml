@@ -36,10 +36,9 @@ steps:
     stage: pre-deploy
     working_directory: ${{main_clone}}/ts-sandbox
     commands:
-      - ls
       - npm install package.json
       - npm install -g firebase-tools
-      - ls /bin/sh
+      - firebase use --add saas-cloud-prototype
       - pip install -r requirements.txt
       - python tests/curl.py
       
