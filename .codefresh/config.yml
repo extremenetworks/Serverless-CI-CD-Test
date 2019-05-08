@@ -23,7 +23,7 @@ steps:
       - echo -n $GCP_CREDENTIALS_FILE | base64 -d > ${PWD}/.gcloud/keyfile.json
       - cf_export GCP_SHARED_CREDENTIALS_FILE=${PWD}/.gcloud/keyfile.json
 
-  lint_build:
+  lint:
     image: nikolaik/python-nodejs:latest
     title: lint
     stage: pre-deploy
@@ -31,7 +31,14 @@ steps:
     commands:
       - npm install package.json
       - npm install -g typescript
-      - ls node_modules/
+      - tslint --project tsconfig.json
+      
+  build:
+    image: nikolaik/python-nodejs:latest
+    title: build
+    stage: pre-deploy
+    working_directory: ${{main_clone}}/ts-sandbox/functions
+    commands:
       - npm run build
 
   unitTest:
