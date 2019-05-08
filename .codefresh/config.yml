@@ -44,6 +44,7 @@ steps:
       - firebase use --add saas-cloud-prototype 
       - pip install -r requirements.txt
       - python tests/curl.py
+      - echo $CF_UNIT_TEST_STATUS
       
   deploy:
     image: codefresh/serverless:1.28
@@ -55,8 +56,8 @@ steps:
       - serverless deploy
     when:
       condition:
-            all:
-              checkUnitTestPass: '"${{CF_UNIT_TEST_STATUS}}" == "SUCCESS"'
+        all:
+          checkUnitTestPass: '"${{CF_UNIT_TEST_STATUS}}" == "SUCCESS"'
               
   package:
     image: codefresh/serverless:1.28
@@ -67,5 +68,5 @@ steps:
       - echo "Tag and push package to Cloud Storage from .serverless folder"
     when:
       condition:
-            all:
-              checkUnitTestPass: '"${{CF_UNIT_TEST_STATUS}}" == "SUCCESS"'
+         all:
+           checkUnitTestPass: '"${{CF_UNIT_TEST_STATUS}}" == "SUCCESS"'
