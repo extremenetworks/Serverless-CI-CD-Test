@@ -4,26 +4,33 @@ import threading
 import subprocess
 from prettytable import PrettyTable
 
-def createTestOutput(case, result, tab):
+def postTest(isPass):
+    if isPass:
+        subprocess.Popen(["cf_export", 'UNIT_TEST_STATUS=SUCCESS'])
+    else:
+        subprocess.Popen(["cf_export", 'UNIT_TEST_STATUS=FAILED'])
+
+def createTestOutput(case, result, out, tab):
     method, path = re.findall(".*\.(.*)\(\"(.*)\"\).*", case)[0]
-    tab.add_row([path, method.upper(), result])
+    tab.add_row([path, method.upper(), result, out])
 
 def outputReader(proc):
-    print("In outputReader")
+    isPass = True
     _count = 0
     cases = [line for line in open("test.js", "r")]
     num = len(cases)
-    tab = PrettyTable(['PATH', 'METHOD', 'RESULT'])
+    tab = PrettyTable(['PATH', 'METHOD', 'RESULT', 'RESPONSE'])
     for line in iter(proc.stdout.readline, b''):
         decodedLine = line.decode('utf-8')
         if "RESPONSE" in decodedLine:
-            print(decodedLine)
             if '200' or '201' in decodedLine:
-                createTestOutput(cases[_count], 'SUCCESS', tab)
+                createTestOutput(cases[_count], 'SUCCESS', decodedLine, tab)
             else:
                 createTestOutput(cases[_count], 'FAILED', tab)
+                isPass = False
             _count += 1
         if _count == num:
+            postTest(isPass)
             proc.stdout.close()
             proc.terminate()
             print(tab)
@@ -31,13 +38,10 @@ def outputReader(proc):
 
 def main():
     cmd = "firebase functions:shell < test.js"
-    print("Entered the script")
     proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stdin=subprocess.PIPE, shell=True)
     th = threading.Thread(target=outputReader, args=(proc, ))
-    print("Started Thread")
     th.start()
     time.sleep(20)
-    print("Completed")
     exit()
 
 if __name__ == '__main__':
