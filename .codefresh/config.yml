@@ -41,23 +41,23 @@ steps:
     commands:
       - npm install -g firebase-tools@6.8.0
       - firebase use --add saas-cloud-prototype 
-      - firebase list
-      #- firebase functions:shell < ../test.js
       - pip install -r requirements.txt
       - python tests/curl.py
       
-  package:
+  deploy:
+    image: codefresh/serverless:1.28
+    stage: deploy
+    title: deploy to GCP with serverless framework
+    working_directory: ${{main_clone}}/ts-sandbox/functions
+    commands:
+      - npm install serverless-google-cloudfunctions
+      - serverless deploy
+
+ package:
     image: codefresh/serverless:1.28
     stage: pre-deploy
     title: package serverless service
     working_directory: ${{main_clone}}/ts-sandbox/functions
     commands:
+      - echo "Tag and push package to Cloud Storage"
       - serverless package --package ${PACKAGE}
-
-  deploy:
-    image: codefresh/serverless:1.28
-    stage: deploy
-    title: deploy to GCP with serverless framework
-    working_directory: ${{main_clone}}
-    commands:
-      - serverless deploy
