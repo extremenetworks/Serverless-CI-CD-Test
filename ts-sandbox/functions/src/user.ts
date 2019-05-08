@@ -67,11 +67,11 @@ async function deleteUserFromDB(userId: string, response: Response) {
 
         await userDoc.delete().then((updatedDoc) => {
             return response.json({
-                message: `Deleted MFA information for user ${userId}`
+                message: `Deleted user ${userId}`
             })
         }).catch((err) => {
             return response.status(500).send({
-                error: `Internal error deleting MFA for user ${userId} - ${err}`
+                error: `Internal error deleting user ${userId} - ${err}`
             })
         });
         return;
