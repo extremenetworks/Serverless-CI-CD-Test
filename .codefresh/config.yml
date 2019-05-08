@@ -28,7 +28,10 @@ steps:
     stage: pre-deploy
     working_directory: ${{main_clone}}/ts-sandbox
     commands:
+      - ls
       - npm install package.json
+      - ls node_modules/
+      - npm --prefix ./functions/ run build
 
   unitTest:
     image: nikolaik/python-nodejs:latest
