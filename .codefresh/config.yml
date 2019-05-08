@@ -31,7 +31,7 @@ steps:
     commands:
       - npm install package.json
       - npm install -g typescript
-      - tslint --project tsconfig.json
+      - npm run lint
       
   build:
     image: nikolaik/python-nodejs:latest
