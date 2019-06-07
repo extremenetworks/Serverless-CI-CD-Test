@@ -12,7 +12,7 @@ steps:
     repo: '${{CF_REPO_OWNER}}/${{CF_REPO_NAME}}'
     revision: '${{CF_REVISION}}'
     stage: clone
-    git: github
+    git: CF-default
 
   setup:
     image: alpine:3.7
