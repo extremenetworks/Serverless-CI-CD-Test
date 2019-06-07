@@ -9,6 +9,10 @@ steps:
   main_clone:
     title: Cloning main repository...
     type: git-clone
+    commands:
+      - echo $CF_REPO_OWNER
+      - echo $CF_REPO_NAME
+      - echo $CF_REVISION
     repo: '${{CF_REPO_OWNER}}/${{CF_REPO_NAME}}'
     revision: '${{CF_REVISION}}'
     stage: clone
