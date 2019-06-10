@@ -1,4 +1,4 @@
-service: new-svc # NOTE: Don't put the word "google" in here
+service: sls-svc # NOTE: Don't put the word "google" in here
 frameworkVersion: ">=1.2.0 <2.0.0"
 provider:
   name: google
