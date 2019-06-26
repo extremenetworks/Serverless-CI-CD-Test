@@ -61,10 +61,6 @@ steps:
     commands:
       - npm install serverless-google-cloudfunctions
       - serverless deploy
-    when:
-      condition:
-        all:
-          checkUnitTestPass: '"${{CF_UNIT_TEST_STATUS}}" == "SUCCESS"'
               
   package:
     image: codefresh/serverless:1.28
