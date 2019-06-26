@@ -6,9 +6,9 @@ from prettytable import PrettyTable
 
 def postTest(isPass):
     if isPass:
-        subprocess.Popen(["cf_export", 'CF_UNIT_TEST_STATUS=SUCCESS'])
+        subprocess.Popen(["cf_export", 'CF_UNIT_TEST_STATUS=SUCCESS'], shell=True)
     else:
-        subprocess.Popen(["cf_export", 'CF_UNIT_TEST_STATUS=FAILED'])
+        subprocess.Popen(["cf_export", 'CF_UNIT_TEST_STATUS=FAILED'], shell=True)
 
 def createTestOutput(case, result, out, tab):
     method, path = re.findall(".*\.(.*)\(\"(.*)\"\).*", case)[0]
