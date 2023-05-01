@@ -16,7 +16,7 @@
     "cors": "^2.8.5",
     "express": "^4.16.4",
     "firebase": "^5.8.6",
-    "firebase-admin": "~7.0.0",
+    "firebase-admin": "~11.7.0",
     "firebase-functions": "^2.2.0",
     "firebase-functions-helper": "0.6.4",
     "method-override": "^3.0.0",
